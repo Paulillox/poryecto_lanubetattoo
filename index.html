@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Lanubetattoo · Tatuadora</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#inicio">Lanubetattoo</a>
+    <nav aria-label="Principal">
+      <a href="#flash">Flash</a>
+      <a href="#agenda">Agendar</a>
+      <a href="#tienda">Tienda</a>
+      <a href="#info">Info</a>
+    </nav>
+    <button class="btn sm cart-btn" data-act="open-cart" aria-label="Abrir carrito">Carrito <span class="badge" id="cart-count">0</span></button>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Cada línea, dibujada a mano para tu piel.</h1>
+        <p class="lead">Tatuaje flash, piezas personalizadas y sesiones largas en un estudio privado. Reserva tu hora con un abono y paga con Webpay en el mismo paso.</p>
+        <div class="hero-cta">
+          <a class="btn red" href="#agenda">Reservar hora</a>
+          <a class="btn" href="#flash">Ver flash disponible</a>
+        </div>
+        <p class="hours">Martes a sábado, 10:00 a 20:00. Solo con cita previa.</p>
+      </div>
+      <div class="sheet" id="sheet" role="img" aria-label="Hoja de flash con seis diseños: daga, luna, ojo, nube, corazón y polilla"></div>
+    </div>
+  </section>
+
+  <section class="s" id="flash">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Flash disponible</h2>
+        <p>Diseños únicos: cada uno se tatúa una sola vez. Elige uno y reserva tu hora con él.</p>
+      </div>
+      <div class="grid" id="flash-grid"></div>
+    </div>
+  </section>
+
+  <section class="s" id="agenda">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Agenda tu hora</h2>
+        <p>Elige el servicio, el día y el horario. El abono bloquea tu hora y se descuenta del valor final.</p>
+      </div>
+      <div class="agenda">
+        <div>
+          <fieldset class="step">
+            <legend><i>1</i> ¿Qué quieres hacerte?</legend>
+            <div class="svcs" id="svcs"></div>
+            <label class="f" id="flash-pick" hidden style="margin-top:1rem">Diseño flash
+              <select id="flash-sel"></select>
+            </label>
+          </fieldset>
+
+          <div class="step">
+            <h3><i>2</i> Elige día y horario</h3>
+            <div class="cal">
+              <div class="cal-h">
+                <button class="btn sm" data-act="prev" aria-label="Mes anterior">‹</button>
+                <b id="cal-title" aria-live="polite"></b>
+                <button class="btn sm" data-act="next" aria-label="Mes siguiente">›</button>
+              </div>
+              <div class="cal-g" id="cal-g"></div>
+              <p class="hint" id="cal-hint"></p>
+            </div>
+            <div class="slots" id="slots" role="group" aria-label="Horarios disponibles"></div>
+          </div>
+
+          <div class="step">
+            <h3><i>3</i> Cuéntame tu idea</h3>
+            <div class="two">
+              <label class="f">Zona del cuerpo
+                <select id="zone">
+                  <option value="">Elige una zona</option>
+                  <option>Brazo</option><option>Antebrazo</option><option>Pierna</option><option>Pantorrilla</option>
+                  <option>Costillas</option><option>Espalda</option><option>Pecho</option><option>Mano o pie</option><option>Otra</option>
+                </select>
+              </label>
+              <label class="f">Tamaño aproximado <span class="opt">(cm)</span>
+                <input type="text" id="size" inputmode="numeric" placeholder="Ej: 10 cm">
+              </label>
+            </div>
+            <label class="f">Describe lo que imaginas <span class="opt">(obligatorio en piezas personalizadas)</span>
+              <textarea id="idea" placeholder="Estilo, referencias, si es cubrir un tatuaje anterior, etc."></textarea>
+            </label>
+          </div>
+        </div>
+
+        <aside class="summary" aria-label="Resumen de tu reserva">
+          <h3>Tu reserva</h3>
+          <dl id="sum-dl"></dl>
+          <div class="dep-row"><span>Abono hoy</span><strong id="sum-dep">$0</strong></div>
+          <small>Se descuenta del total el día de tu sesión.</small>
+          <p class="err" id="agenda-err" role="alert"></p>
+          <button class="btn red" style="width:100%" id="add-cita" data-act="add-cita">Agregar abono al carrito</button>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="s" id="tienda">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Tienda</h2>
+        <p>Láminas de mis diseños, cuidados para tu tatuaje nuevo y gift cards para regalar una sesión.</p>
+      </div>
+      <div class="grid" id="shop-grid"></div>
+    </div>
+  </section>
+
+  <section class="s" id="info">
+    <div class="wrap">
+      <div class="sec-head"><h2>Antes de tu cita</h2></div>
+      <div class="info">
+        <div><h3>El abono</h3><p>Bloquea tu hora y se descuenta del total. Se paga online al reservar.</p></div>
+        <div><h3>Cambios de fecha</h3><p>Puedes mover tu hora sin costo hasta 48 horas antes. Pasado ese plazo, el abono no se devuelve.</p></div>
+        <div><h3>El día de la sesión</h3><p>Come algo, toma agua y evita el alcohol las 24 horas previas. Hay que ser mayor de 18 años.</p></div>
+        <div><h3>Cuidados</h3><p>Al terminar recibes instrucciones por escrito. El kit de la tienda trae lo básico para las primeras semanas.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <p><strong>Lanubetattoo</strong></p>
+      <p>Estudio privado, solo con cita previa.</p>
+    </div>
+    <div>
+      <p>Martes a sábado, 10:00 a 20:00</p>
+      <p>[Tu dirección aquí]</p>
+    </div>
+    <div>
+      <p>@lanubetattoo</p>
+      <p>[tu@correo.com]</p>
+    </div>
+  </div>
+</footer>
+
+<dialog id="cart" aria-labelledby="cart-title">
+  <div class="cart-in">
+    <div class="ch">
+      <div>
+        <h2 id="cart-title" tabindex="-1">Carrito</h2>
+        <div class="steps" id="cart-steps"></div>
+      </div>
+      <button class="btn sm" data-act="close-cart" aria-label="Cerrar carrito">Cerrar</button>
+    </div>
+    <div class="cb" id="cart-body"></div>
+    <div class="cf" id="cart-foot"></div>
+  </div>
+</dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
